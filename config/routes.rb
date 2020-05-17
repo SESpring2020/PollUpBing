@@ -1,8 +1,40 @@
 Rails.application.routes.draw do
+  #resources :questions
+  #get 'dashboard/index'
+
+   
+  match 'auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post] 
+  match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post] 
+  get '/login', :to => 'sessions#new', :as => :login
+  get '/logout', :to => 'sessions#destroy', :as => :logout
+  get '/cleanup/' , :to => 'session#cleanup', :as => :cleanup
   
   resources :polls
-  root 'polls#index'
+    get '/polls/:id/edit' => 'polls#edit'
+
+    patch '/polls/:id' => 'polls#update'
+
+    delete '/polls/:id' => 'polls#destroy'
+
+  #do
+  #   resources :questions
+  #   resources :replies, only: [ :new, :create ]
+  # end
   
+  resources :users 
+  get 'dashboard/index', to: 'dashboard#index'
+  get 'welcome/login', :as => :welcome_login
+  root 'welcome#login'
+  
+  resources :votes, only: [:create]
+  #get 'users'
+   #get 'login', to: 'sessions#new'
+   #post 'login', to: 'sessions#create'
+   #get 'welcome', to: 'sessions#welcome'
+  #root 'polls#index'
+
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

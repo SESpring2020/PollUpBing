@@ -8,6 +8,7 @@ gem 'rails', '4.2.10'
 
 
 # Use SCSS for stylesheets
+gem 'sassc-rails'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -15,7 +16,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -25,10 +25,19 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'omniauth'
+gem 'omniauth-github'
+#gem 'omniauth-facebook'
 gem 'bundler', '1.17.3'
 gem 'haml-rails'
+gem 'bootstrap-sass'
+gem 'jquery-turbolinks'
+gem "cocoon"
+gem 'counter_culture', '~> 0.1.23'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -59,6 +68,9 @@ group :test do
   gem 'database_cleaner', '1.4.1'
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
+  gem 'faker'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :production do

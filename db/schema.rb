@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200402041202) do
+ActiveRecord::Schema.define(version: 20200515193001) do
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
 
   create_table "polls", force: :cascade do |t|
     t.text     "topic"
@@ -19,13 +29,36 @@ ActiveRecord::Schema.define(version: 20200402041202) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "vote_options", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "poll_id"
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "lastname"
+    t.string   "firstname"
+    t.text     "bio"
+    t.text     "interests"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "vote_options", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "poll_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "votes_count", default: 0, null: false
+  end
+
   add_index "vote_options", ["poll_id"], name: "index_vote_options_on_poll_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vote_option_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["vote_option_id", "user_id"], name: "index_votes_on_vote_option_id_and_user_id", unique: true
+  add_index "votes", ["vote_option_id"], name: "index_votes_on_vote_option_id"
 
 end

@@ -69,8 +69,10 @@ group :test do
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
   gem 'faker'
+  gem 'shoulda-matchers'
   gem 'capybara'
   gem 'launchy'
+  gem 'test_after_commit'
 end
 
 group :production do

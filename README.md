@@ -4,7 +4,7 @@ PollupBing is a webpage where all the events which are about to take place in bi
 Initial Contributors
 
 
-1] ChetHana Gopinath
+1] Chethana Gopinath
 
 2] Puneeth Reddirajula
 
